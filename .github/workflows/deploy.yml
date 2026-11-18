@@ -43,4 +43,4 @@ jobs:
           protocol: ftps
           port: 21
           local-dir: ./dist/
-          server-dir: /events/
+          server-dir: /agrolocale-events/
