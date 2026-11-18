@@ -1,0 +1,17 @@
+{
+  "name": "Elysian Relaunch Banner Creator",
+  "short_name": "Elysian Banner",
+  "description": "Create and download your Elysian Farm & Resort Relaunch profile banner.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8f2e7",
+  "theme_color": "#001c1c",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "507x492",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

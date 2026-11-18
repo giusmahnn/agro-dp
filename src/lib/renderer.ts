@@ -8,8 +8,9 @@
 import { themes, type ThemeConfig } from "../data/themes";
 import type { BannerData, PhotoTransform } from "../types/banner";
 
-/** Final export size in pixels (square). */
-export const BANNER_SIZE = 1080;
+/** Final export size in pixels. */
+export const BANNER_WIDTH = 1080;
+export const BANNER_HEIGHT = 1350;
 
 /** Font stack used for the name. Swap in the project's brand font if it has one. */
 const NAME_FONT_FAMILY = '"Playfair Display", Georgia, "Times New Roman", serif';
@@ -85,7 +86,7 @@ function fitFontSize(
  * @param data   name, theme, photo and crop settings
  * @param target optional existing canvas to draw into (the preview passes its
  *               own); if omitted a fresh offscreen canvas is created (download).
- * @returns the finished 1080 x 1080 canvas
+ * @returns the finished 1080 x 1350 canvas
  */
 export async function renderElysianBanner(
   data: BannerData,
@@ -107,8 +108,8 @@ export async function renderElysianBanner(
 
   // ---- 2. Prepare the canvas ---------------------------------------------
   const canvas = target ?? document.createElement("canvas");
-  canvas.width = BANNER_SIZE; // setting width/height also clears the canvas
-  canvas.height = BANNER_SIZE;
+  canvas.width = BANNER_WIDTH; // setting width/height also clears the canvas
+  canvas.height = BANNER_HEIGHT;
   const ctx = canvas.getContext("2d");
   if (!ctx) throw new Error("Canvas 2D is not supported in this browser.");
 
@@ -116,7 +117,7 @@ export async function renderElysianBanner(
   // The supplied artwork contains an opaque placeholder inside the frame.
   // Drawing it first lets the user's photo replace that placeholder without
   // covering the surrounding artwork.
-  ctx.drawImage(overlay, 0, 0, BANNER_SIZE, BANNER_SIZE);
+  ctx.drawImage(overlay, 0, 0, BANNER_WIDTH, BANNER_HEIGHT);
 
   // ---- 4. Draw the user's photo, clipped to the design's photo frame -----
   if (photoBitmap) {

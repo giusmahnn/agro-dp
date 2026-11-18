@@ -1,6 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import type { BannerData } from "../types/banner";
-import { BANNER_SIZE, renderElysianBanner } from "../lib/renderer";
+import {
+  BANNER_HEIGHT,
+  BANNER_WIDTH,
+  renderElysianBanner,
+} from "../lib/renderer";
 
 /**
  * Displays the banner. It contains NO drawing logic: it just hands its
@@ -25,14 +29,14 @@ export default function BannerPreview({ data }: { data: BannerData }) {
   return (
     <div className="preview">
       {/*
-        width/height attributes = the real 1080px drawing surface.
+        width/height attributes = the real 1080 x 1350 drawing surface.
         CSS (width:100%; height:auto) only scales how it is DISPLAYED,
-        so the aspect ratio never distorts and the export stays 1080x1080.
+        so the aspect ratio never distorts and the export stays 1080x1350.
       */}
       <canvas
         ref={canvasRef}
-        width={BANNER_SIZE}
-        height={BANNER_SIZE}
+        width={BANNER_WIDTH}
+        height={BANNER_HEIGHT}
         className="preview__canvas"
         aria-label="Banner preview"
       />

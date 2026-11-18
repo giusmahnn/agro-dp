@@ -1,6 +1,6 @@
 import type { ElysianTheme } from "../types/banner";
 
-/** A rectangle in banner pixels (the banner is 1080 x 1080). */
+/** A rectangle in banner pixels (the banner is 1080 x 1350). */
 export interface PhotoFrame {
   x: number;
   y: number;
@@ -39,17 +39,17 @@ export interface ThemeConfig {
  * The theme registry. The whole app (selector, renderer) reads from here,
  * so adding a theme = add an id to `ElysianTheme` + add one entry below.
  *
- * The supplied artwork is 1254px square and is scaled to the renderer's
- * 1080px canvas. These coordinates match its circular photo placeholder.
+ * The supplied artwork is scaled to the renderer's 1080 x 1350 canvas. These
+ * coordinates match its 436px circular photo placeholder.
  */
 export const themes = {
   blue: {
     name: "Blue",
     overlay: "/banner.png",
-    photoFrame: { x: 236, y: 180, width: 608, height: 608, shape: "circle" },
+    photoFrame: { x: 322, y: 368, width: 436, height: 436, shape: "circle" },
     nameStyle: {
       x: 540,
-      y: 900,
+      y: 849,
       maxWidth: 820,
       fontSize: 64,
       color: "#E99C0C", // Golden Orange
@@ -59,10 +59,10 @@ export const themes = {
   white: {
     name: "White",
     overlay: "/banner.png",
-    photoFrame: { x: 236, y: 180, width: 608, height: 608, shape: "circle" },
+    photoFrame: { x: 322, y: 368, width: 436, height: 436, shape: "circle" },
     nameStyle: {
       x: 540,
-      y: 900,
+      y: 849,
       maxWidth: 820,
       fontSize: 64,
       color: "#6F0500", // Dark Garnet
