@@ -1,30 +1,34 @@
 name: Build and Deploy to cPanel (Events Website)
 
 on:
-  # Triggers when you push code to the main branch
   push:
     branches:
       - main
       - master
-  # Allows you to manually trigger the deployment from the GitHub Actions tab
+
   workflow_dispatch:
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20' # Or your specific Node version
+          node-version: '20'
           cache: 'pnpm'
 
       - name: Install Dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
       - name: Build Static Export
         run: pnpm run build
@@ -36,4 +40,4 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./dist/
-          server-dir: /events-agrolocale/ # Make sure this matches your cPanel folder structure
+          server-dir: /home/agrojccq/events-agrolocale/
