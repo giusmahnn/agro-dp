@@ -16,7 +16,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Setup npm
+      - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
           version: 10
@@ -25,13 +25,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
+          cache: 'pnpm'
 
       - name: Install Dependencies
-        run: npm install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Build Static Export
-        run: npm run build
+        run: pnpm run build
 
       - name: Upload to cPanel via FTPS
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
