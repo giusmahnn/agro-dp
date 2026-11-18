@@ -1,4 +1,4 @@
-name: Deploy static export
+name: Deploy static export 
 
 on:
   push:
