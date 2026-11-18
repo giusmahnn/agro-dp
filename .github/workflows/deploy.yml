@@ -1,32 +1,42 @@
-name: Deploy Events Website
+name: Build and Deploy to cPanel (Events Website)
 
 on:
+  # Triggers when you push code to the main branch
   push:
     branches:
       - main
+      - master
+  # Triggers when Sanity sends a webhook (when a post is published)
+  repository_dispatch:
+    types: [sanity-publish]
+  # Allows you to manually trigger the deployment from the GitHub Actions tab
+  workflow_dispatch:
 
 jobs:
-  deploy:
-    name: Deploy to Namecheap
+  build-and-deploy:
     runs-on: ubuntu-latest
-
+    
     steps:
-      - name: Checkout production branch
+      - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Deploy website via FTPS
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Or your specific Node version
+          cache: 'pnpm'
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Build Static Export
+        run: pnpm run build
+
+      - name: Upload to cPanel via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftps
-          port: 21
-          local-dir: ./
-          server-dir: /
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/.github/**
-            **/.cpanel.yml
-            **/README.md
+          local-dir: ./out/
+          server-dir: / # Make sure this matches your cPanel folder structure
