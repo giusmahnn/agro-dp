@@ -1,5 +1,5 @@
 /** Identifier of an available theme. Add a new string here when adding a theme. */
-export type ElysianTheme = "blue" | "white";
+export type ElysianTheme = "blue";
 
 /**
  * How the user has positioned their photo inside the design's photo frame.

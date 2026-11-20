@@ -93,7 +93,6 @@ export default function BannerCreator() {
       {currentStep === 3 && (
         <PreviewStep data={bannerData} onBack={() => goTo(2)} />
       )}
-      console.log("bannerData in BannerCreator");
       </div>
     </>
   );

@@ -44,8 +44,8 @@ export interface ThemeConfig {
  */
 export const themes = {
   blue: {
-    name: "Blue",
-    overlay: "/banner.png",
+    name: "",
+    overlay: "/banner.webp",
     photoFrame: { x: 322, y: 368, width: 436, height: 436, shape: "circle" },
     nameStyle: {
       x: 540,
@@ -56,9 +56,10 @@ export const themes = {
       align: "center",
     },
   },
+  /*
   white: {
-    name: "White",
-    overlay: "/banner.png",
+    name: "",
+    overlay: "/banner.webp",
     photoFrame: { x: 322, y: 368, width: 436, height: 436, shape: "circle" },
     nameStyle: {
       x: 540,
@@ -69,6 +70,7 @@ export const themes = {
       align: "center",
     },
   },
+  */
 } satisfies Record<ElysianTheme, ThemeConfig>;
 
 /** Array form, handy for rendering the selector with .map(). */

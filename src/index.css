@@ -467,12 +467,12 @@ input[type="text"]:focus-visible {
   margin-top: 1.25rem;
 }
 
-/* Responsive display size; the internal canvas stays 1080x1350. */
+/* Responsive display size; the internal canvas stays 1080x1080. */
 .preview__canvas {
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 1;
   border-radius: 12px;
   border: 1px solid var(--border);
 }
